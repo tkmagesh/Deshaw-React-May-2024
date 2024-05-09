@@ -39,3 +39,6 @@
 - Use 'htmlFor' in place of 'for'
 - Use 'className' in place of 'class'
 - All dynamic expressions have to be enclosed within '{}' (interpolation)
+
+## Event Loop
+- https://www.youtube.com/watch?v=i3T_x-F64sM&list=PL2OMOVtxSKThVeJJQjDPj5uAzsgIowF6x&index=1
