@@ -1,0 +1,64 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VDOM - Intro</title>
+    <script src="react.development.js"></script>
+    <script src="react-dom.development.js"></script>
+    <script src="babel.min.js"></script>
+    <style>
+        .highlight {
+            color : burlywood;
+        }
+    </style>
+    <script type="text/babel">
+        var root;
+        var list = [ 'Pen', 'Pencil' ];
+
+        function onBtnRenderClick(){
+            /* VDOM */
+            var listItems = [];
+            for (let idx = list.length-1; idx >= 0; idx--){
+                var listItem = (<li key={idx}>{list[idx]}</li>)
+                listItems.push(listItem)
+            }
+            var appEle = (
+                <div>
+                    <ul>
+                        {listItems}
+                    </ul>
+                </div>
+            )
+            root.render(appEle);
+
+            /* DOM */
+            /* 
+                document.getElementById('spanCounter').innerText = counter; 
+            */
+        }
+        function onDocumentLoad(){
+            var btnRender = document.getElementById('btnRender');
+            btnRender.addEventListener('click', onBtnRenderClick);
+            root = ReactDOM.createRoot(document.getElementById('root'))
+        }
+        window.addEventListener('load', onDocumentLoad);
+    </script>
+</head>
+<body>
+    <!-- Browser DOM -->
+    <button id="btnRender">Render</button>
+    <!-- 
+        <div>
+            <span>Counter :</span>
+            <span id="spanCounter"></span>
+        </div> 
+    -->
+    <!-- React VDOM -->
+    <div id="root">
+        
+    </div>
+</body>
+</html>
+   
