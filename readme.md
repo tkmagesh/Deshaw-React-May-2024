@@ -14,3 +14,15 @@
 ## Methodology
 - No powerpoint
 - Discuss & Code
+
+## Repository
+- https://github.com/tkmagesh/Deshaw-React-May-2024
+
+## Rich Internet Applications
+- Apps that are loaded in the browser
+- The view is manipulated in the browser (NO server side view(html) generation)
+- Same user experience as that of desktop applications
+- RIA built using HTML/CSS/JS are called as Single Page Applications (SPA)
+
+## Salary Calculator
+- basic + hra + da - tax = salary
