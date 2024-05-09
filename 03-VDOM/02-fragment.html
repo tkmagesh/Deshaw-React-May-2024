@@ -1,0 +1,71 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VDOM - Intro</title>
+    <script src="react.development.js"></script>
+    <script src="react-dom.development.js"></script>
+    <style>
+        
+    </style>
+    <script>
+        var root;
+        var counter = 0;
+        function onBtnRenderClick(){
+            ++counter;
+
+            /* VDOM */
+            var appEle = React.createElement('div', null, 
+                React.createElement('h1', null, 'React Intro!'),
+                React.createElement('div', null, 
+                    React.createElement('span', '' , 'Counter : '),
+                    React.createElement('span', { id :'spanCounter'}, counter)
+                ),
+                React.createElement('hr'),
+                React.createElement('div', null, 
+                    React.createElement('h3', null, 'Introduction'),
+                    React.createElement('p', null, 'Elit mollit aute dolor elit nostrud id laborum qui fugiat reprehenderit enim. Eiusmod ex irure veniam dolor aliqua qui qui magna deserunt fugiat. Laboris Lorem cillum mollit proident proident ex sint ullamco fugiat. Dolor Lorem consectetur aute magna et nisi cillum Lorem irure excepteur.Quis elit id reprehenderit ea fugiat duis. Duis duis duis id quis fugiat incididunt consectetur ad enim ut minim. Nulla reprehenderit voluptate quis proident labore non ut dolore eiusmod enim.'),
+                    React.createElement('p', null, 'Duis esse aliqua consectetur laboris. Enim veniam Lorem nulla cupidatat nisi incididunt adipisicing adipisicing occaecat cillum. Excepteur enim elit ullamco duis nisi quis pariatur officia elit veniam ut sunt velit do.Nisi adipisicing dolor incididunt fugiat est. Do adipisicing voluptate irure nisi amet Lorem ea mollit pariatur. Fugiat do non adipisicing aliquip quis deserunt. Dolore consectetur excepteur labore reprehenderit velit aliqua exercitation ex aliqua ea. Do irure proident occaecat dolor ex commodo cillum nulla eu deserunt incididunt. Proident est excepteur cillum excepteur pariatur ipsum deserunt dolor.'),
+                    React.createElement('p', null, 'Exercitation minim elit officia laboris tempor aliquip. Consectetur excepteur duis adipisicing adipisicing incididunt cillum fugiat nulla. Lorem velit enim exercitation laborum anim sit ex. Commodo ut voluptate dolore enim veniam dolore non consequat magna magna.Duis aliqua tempor eu dolore Lorem dolore culpa nostrud duis aliqua occaecat duis. Amet enim adipisicing aliqua Lorem enim proident elit officia sunt. Excepteur cillum veniam nisi veniam velit ut consectetur eiusmod quis enim culpa. Ipsum ea aute consequat cupidatat cillum qui elit exercitation veniam. Ea ad esse amet et. Occaecat sunt nisi exercitation tempor occaecat ipsum nostrud commodo commodo id. Ut pariatur in laborum non aliquip nostrud proident laborum cillum est esse anim cupidatat aute.'),
+                ),
+                React.createElement('div',null,
+                    React.createElement('h3', null, 'Advantages'),
+                    React.createElement('ul', null, 
+                        React.createElement('li', null, 'Declarative'),
+                        React.createElement('li', null, 'Efficient'),
+                    )
+                )
+            )
+            root.render(appEle);
+
+            /* DOM */
+            /* 
+                document.getElementById('spanCounter').innerText = counter; 
+            */
+        }
+        function onDocumentLoad(){
+            var btnRender = document.getElementById('btnRender');
+            btnRender.addEventListener('click', onBtnRenderClick);
+            root = ReactDOM.createRoot(document.getElementById('root'))
+        }
+        window.addEventListener('load', onDocumentLoad);
+    </script>
+</head>
+<body>
+    <!-- Browser DOM -->
+    <button id="btnRender">Render</button>
+    <!-- 
+        <div>
+            <span>Counter :</span>
+            <span id="spanCounter"></span>
+        </div> 
+    -->
+    <!-- React VDOM -->
+    <div id="root">
+        
+    </div>
+</body>
+</html>
+   

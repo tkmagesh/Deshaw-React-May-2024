@@ -15,6 +15,9 @@
 - No powerpoint
 - Discuss & Code
 
+## Reference
+- https://bit.ly/react-videos
+
 ## Repository
 - https://github.com/tkmagesh/Deshaw-React-May-2024
 
@@ -26,3 +29,7 @@
 
 ## Salary Calculator
 - basic + hra + da - tax = salary
+
+## View
+- Has to be dumb
+- React to user actions or react to model changes

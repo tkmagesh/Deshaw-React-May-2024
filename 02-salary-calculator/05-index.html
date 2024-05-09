@@ -75,6 +75,7 @@
             // only for learning purpose
             window['model'] = new SalaryCalculatorModel();
 
+            // reacting to user actions
             $('#txtBasic').change(function(){
                 model.set('basic', parseInt($(this).val()));
             })
@@ -95,6 +96,7 @@
                 model.calculate();                
             });
 
+            // reacting to model changes
             model.subscribe('salary', function(){
                 $('#tdSalary').text(model.get('salary'));
             })
