@@ -33,3 +33,9 @@
 ## View
 - Has to be dumb
 - React to user actions or react to model changes
+
+## JSX vs HTML
+- Every element MUST have a corrensponding close element (in jsx)
+- Use 'htmlFor' in place of 'for'
+- Use 'className' in place of 'class'
+- All dynamic expressions have to be enclosed within '{}' (interpolation)

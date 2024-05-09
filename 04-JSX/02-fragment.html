@@ -1,0 +1,76 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VDOM - Intro</title>
+    <script src="react.development.js"></script>
+    <script src="react-dom.development.js"></script>
+    <script src="babel.min.js"></script>
+    <style>
+        .highlight {
+            color : burlywood;
+        }
+    </style>
+    <script type="text/babel">
+        var root;
+        var counter = 0;
+        function onBtnRenderClick(){
+            ++counter;
+
+            /* VDOM */
+            var appEle = (
+                <div>
+                    <h1 className="highlight">React Intro</h1>
+                    <hr/>
+                    <div>
+                        <label htmlFor="">Counter : </label>
+                        <span>{counter}</span>
+                    </div>
+                    <div>
+                        <h3>Introduction</h3>
+                        <p>Incididunt velit laborum reprehenderit culpa enim magna laboris aliqua qui sunt pariatur. Enim voluptate aliqua nostrud est cupidatat labore velit incididunt mollit minim eiusmod commodo. Labore aliquip ex enim ut irure aliqua ut. Adipisicing consectetur est culpa quis fugiat nulla nulla sunt qui pariatur reprehenderit est labore.</p>
+                        <p>Pariatur nulla aute id eu amet ipsum excepteur minim sunt. Ipsum deserunt id fugiat consectetur ex cillum do proident et ut magna. Proident aute aliquip ex elit est nulla consequat incididunt pariatur.</p>
+                        <p>Adipisicing ad enim officia duis nostrud id reprehenderit amet reprehenderit mollit magna. Dolor ad in enim id commodo minim ipsum duis enim aute officia nisi consequat. Sit minim occaecat non Lorem labore ex est fugiat reprehenderit mollit nisi. Dolore minim aliquip excepteur magna duis tempor sit nulla sint ullamco mollit. Mollit minim esse est fugiat tempor eu dolor elit fugiat. Amet ullamco culpa qui laborum pariatur dolor tempor et mollit.</p>
+                    </div>
+                    <div>
+                        <h3>Advantages</h3>
+                        <ul>
+                            <li>Declarative</li>
+                            <li>Efficient</li>
+                        </ul>
+                    </div>
+                </div>
+            )
+            root.render(appEle);
+
+            /* DOM */
+            /* 
+                document.getElementById('spanCounter').innerText = counter; 
+            */
+        }
+        function onDocumentLoad(){
+            var btnRender = document.getElementById('btnRender');
+            btnRender.addEventListener('click', onBtnRenderClick);
+            root = ReactDOM.createRoot(document.getElementById('root'))
+        }
+        window.addEventListener('load', onDocumentLoad);
+    </script>
+</head>
+<body>
+    <!-- Browser DOM -->
+    <button id="btnRender">Render</button>
+    <!-- 
+        <div>
+            <span>Counter :</span>
+            <span id="spanCounter"></span>
+        </div> 
+    -->
+    <!-- React VDOM -->
+    <div id="root">
+        
+    </div>
+</body>
+</html>
+   
