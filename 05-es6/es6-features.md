@@ -77,25 +77,114 @@ format(product)
 ```
 ## default parameter
 ```js
+function add(x = 10,y = 20){
+    return x + y;
+}
 
+add()
+
+add(100)
+
+add(undefined, 200)
+
+add(100,200)
 ```
 ## arrow functions
 ```js
+/*
+//function statement
+function add(x,y){
+    return x + y;
+}
 
+// function expression
+let add = function(x,y){
+    return x + y
+}
+
+// arrow function
+let add = (x,y) => {
+    return x + y;
+}
+*/
+let add = (x,y) => x + y
+
+add(100,200)
 ```
 ## iterators (for..of)
 ```js
+let nos = [3,1,4,2,5]
 
+for(let no of nos)
+    console.log(no)
 ```
 ## symbols
 ```js
-
+let s1 = Symbol()
+    s2 = Symbol()
+console.log(s1 === s2)
 ```
 ## template strings
 ```js
-
+let x = 10, y = 20
+let s1 = `sum of ${x} and ${y} is ${x+y}`
+let s2 = `
+sum of 
+${x} and ${y} 
+is ${x+y}
+`
 ```
 ## classes & inheritance
 ```js
+class Product{
+    // private attributes
+    #id = 0;
 
+    // public attributes
+    name = '';
+    cost = 0;
+
+    // accessors
+    get id(){
+        return this.#id;
+    }
+
+    set id(val){
+        //validation
+        this.#id = val;
+    }
+
+    //static attributes
+    static ModelType = 'Product'
+
+    //constructor
+    constructor(id, name, cost){
+        this.#id = id;
+        this.name = name;
+        this.cost = cost;
+    }
+
+    // instance methods
+    format(){
+        return `id = ${this.id}, name = ${this.name}, cost = ${this.cost}`
+    }
+
+    // static methods
+    static IsProduct(val){
+        return val instanceof Product;
+    }
+}
+
+class PerishableProduct extends Product {
+    expiry = '';
+
+    constructor(id, name, cost, expiry){
+        super(id, name, cost);
+        this.expiry = expiry;
+    }
+
+    format(){
+        return `${super.format()}, expiry = ${this.expiry}`
+    }
+}
 ```
