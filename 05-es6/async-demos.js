@@ -54,15 +54,21 @@
     return p;
   }
 
+  /* 
   function addAsyncPromiseClient(x, y) {
     console.log(`[@client] invoking the operation`);
     const p = addAsyncPromise(x, y)
     p.then((result) => {
         console.log(`[@client] result = ${result}`);
     })
-    p.catch((err) => {
-        console.log(`[@client] error : ${err}`);
-    })
+  } 
+  */
+
+  async function addAsyncPromiseClient(x, y) {
+    console.log(`[@client] invoking the operation`);
+    const p = addAsyncPromise(x, y);
+    const result = await p;
+    console.log(`[@client] result = ${result}`);
   }
   window["addAsyncPromiseClient"] = addAsyncPromiseClient;
 })()
