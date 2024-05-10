@@ -52,3 +52,19 @@
 - Used to handle side-effects in functional components
 - Hooks are functions whose name should start with 'use'
 - Hooks can be used ONLY either in a functional component or in another hook
+
+## State
+### Application State
+- Any state that is domain specific
+- It is highly likely change in this data need to be detected across the application
+- DO NOT maintain this in the component
+
+### UI State
+- Any state that is UI specific
+- It is highly unlikely change in this state need to be detected in other parts of the application
+- Feel free to maintain this in the component itself (React.useState)
+
+## State Management
+## Unidirectional Data Flow
+
+![image](./images/udf.png)
