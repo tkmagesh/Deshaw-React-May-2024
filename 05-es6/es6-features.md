@@ -189,6 +189,7 @@ class PerishableProduct extends Product {
 }
 ```
 ## Async Operations
-```js
-
-```
+- callback
+- promises
+- async await
+- observables (rxjs - https://rxjs.dev/)

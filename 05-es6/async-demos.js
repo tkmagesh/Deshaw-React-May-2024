@@ -54,6 +54,7 @@
     return p;
   }
 
+
   /* 
   function addAsyncPromiseClient(x, y) {
     console.log(`[@client] invoking the operation`);
@@ -64,11 +65,15 @@
   } 
   */
 
+  
   async function addAsyncPromiseClient(x, y) {
     console.log(`[@client] invoking the operation`);
     const p = addAsyncPromise(x, y);
     const result = await p;
     console.log(`[@client] result = ${result}`);
+    let doubleResult = result * 2;
+    return doubleResult;
   }
-  window["addAsyncPromiseClient"] = addAsyncPromiseClient;
+  window["addAsyncPromiseClient"] = addAsyncPromiseClient; 
+ 
 })()
