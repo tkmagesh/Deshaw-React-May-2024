@@ -42,3 +42,13 @@
 
 ## Event Loop
 - https://www.youtube.com/watch?v=i3T_x-F64sM&list=PL2OMOVtxSKThVeJJQjDPj5uAzsgIowF6x&index=1
+
+## Views
+- Component = Presentation (VDOM) + UI Behaviour + State (UI)
+- Component will be automatically re-rendered when the state changes
+- Components can be composed of other component
+
+## React Hooks
+- Used to handle side-effects in functional components
+- Hooks are functions whose name should start with 'use'
+- Hooks can be used ONLY either in a functional component or in another hook
