@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Salary Calculator</title>
+    <style>
+        body{
+            margin-left: 50px;
+        }
+        .field{
+            margin-bottom: 10px;
+        }
+        label{
+            display: block;
+        }
+        th, td{
+            padding-right: 10px;
+        }
+    </style>
+    <script src="babel.min.js"></script>
+    <script src="react.development.js"></script>
+    <script src="react-dom.development.js"></script>
+    <script type="text/babel">
+        /* 
+            Assumptions
+            1. 100% functionally correct 
+            2. Refactoring the code into .js/.css files will be taken care
+        */
+        /* 
+            1. Initial Version
+            2. Segregate UI & NON-UI responsibility (introducing the model)
+            3. View populating the data in the model based on user interaction
+        */
+        // NON - UI
+        // state & behavior of a calculator
+        function SalaryCalculatorModel(){
+            let _data = {
+                basic : 0,
+                hra : 0,
+                da : 0,
+                tax : 0,
+                salary : 0
+            };
+            let _subscribers = {
+                basic : null,
+                hra : null,
+                da : null,
+                tax : null,
+                salary : null
+            };
+            this.subscribe = function(attrName, callbackFn){
+                _subscribers[attrName] = callbackFn;
+            };
+            this.get = function(attrName){
+                return _data[attrName];
+            };
+            this.set = function(attrName, value){
+                if (_data[attrName] === value) return;
+                _data[attrName] = value;
+                let callbackFn = _subscribers[attrName];
+                if (typeof callbackFn === 'function'){
+                    callbackFn()
+                }
+            }
+        }
+        // behaviors
+        SalaryCalculatorModel.prototype.calculate = function(){
+            let gross = this.get('basic') + this.get('hra') + this.get('da'),
+                net = gross * ((100-this.get('tax'))/100);
+            this.set('salary' , net);
+            
+        }
+        // UI
+        const SalaryCalculator = () => {
+            return (
+                <>
+                <section>
+                    <div className="field">
+                        <label htmlFor="">Basic :</label>
+                        <input type="number" name="" id="txtBasic" />
+                    </div>
+                    <div className="field">
+                        <label htmlFor="">HRA :</label>
+                        <input type="number" name="" id="txtHra" />
+                    </div>
+                    <div className="field">
+                        <label htmlFor="">DA :</label>
+                        <input type="number" name="" id="txtDa" />
+                    </div>
+                    <div className="field">
+                        <label htmlFor="">Tax :</label>
+                        <input type="range" name="" id="rangeTax" min="0" max="30" value="0" />
+                    </div>
+                    <div className="field">
+                        <button id="btnCalculate">Calculate</button>
+                    </div>
+                    <div className="field">
+                        <table>
+                        <thead>
+                            <tr>
+                            <th>Basic</th>
+                            <th>HRA</th>
+                            <th>DA</th>
+                            <th>Tax</th>
+                            <th>Salary</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                            <td id="tdBasic">[basic]</td>
+                            <td id="tdHra">[hra]</td>
+                            <td id="tdDa">[da]</td>
+                            <td id="tdTax">[tax]</td>
+                            <td id="tdSalary">[salary]</td>
+                            </tr>
+                        </tbody>
+                        </table>
+                    </div>
+                    </section>
+                </>
+            )
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<SalaryCalculator/>)
+        </script>
+  </head>
+  <body>
+    <h1>Salary Calculator</h1>
+    <hr />
+    <div id="root">
+
+    </div>
+  </body>
+</html>
