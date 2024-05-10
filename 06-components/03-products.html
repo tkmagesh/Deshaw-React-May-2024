@@ -13,8 +13,10 @@
     </style>
     <script type="text/babel">
         const Products= () => {
+
+            const txtNewProductNameRef = React.useRef();
             const [productNames,setProductNames] = React.useState([]);
-            const [newProductName, setNewProductName] = React.useState('');
+            const [newProductName, setNewProductName] = React.useState('[product name]');
             /* 
             const productItems = [];
             for(let idx = 0; idx < productNames.length; idx++){
@@ -25,6 +27,8 @@
             */
             const onBtnAddClick = () => {
                 setProductNames([...productNames, newProductName])
+                setNewProductName('')
+                txtNewProductNameRef.current.focus()
             }
 
             const removeProduct = (idx) => {
@@ -42,7 +46,12 @@
                     <h1>Products - [{productNames.length}]</h1>
                     <hr/>
                     <label htmlFor="">Product Name</label>
-                    <input type="text" onChange={evt => setNewProductName(evt.target.value)}/>
+                    <input 
+                        type="text" 
+                        ref={txtNewProductNameRef}
+                        value={newProductName}
+                        onChange={evt => setNewProductName(evt.target.value)}
+                    />
                     <button onClick={onBtnAddClick}>Add</button>
                     <ul>
                         {productItems}
