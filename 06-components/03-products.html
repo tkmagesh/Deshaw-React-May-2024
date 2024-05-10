@@ -13,7 +13,8 @@
     </style>
     <script type="text/babel">
         const Products= () => {
-            const productNames = []
+            const [productNames,setProductNames] = React.useState([]);
+            const [newProductName, setNewProductName] = React.useState('');
             /* 
             const productItems = [];
             for(let idx = 0; idx < productNames.length; idx++){
@@ -22,19 +23,28 @@
                 productItems.push(productItem)
             } 
             */
-            const productItems = productNames.map((productName, idx) => (<li key={idx}>{productName}</li>))
+            const onBtnAddClick = () => {
+                setProductNames([...productNames, newProductName])
+            }
+
+            const removeProduct = (idx) => {
+                productNames.splice(idx, 1)
+                setProductNames([...productNames])
+            }
+            const productItems = productNames.map((productName, idx) => (
+                <li key={idx}>
+                    <span>{productName}</span>
+                    <span> <button onClick={ () => removeProduct(idx)}>X</button> </span>
+                </li>
+            ));
             return (
                 <div>
-                    <h1>Products - [0]</h1>
+                    <h1>Products - [{productNames.length}]</h1>
                     <hr/>
                     <label htmlFor="">Product Name</label>
-                    <input type="text" name="" id=""/>
-                    <button>Add</button>
+                    <input type="text" onChange={evt => setNewProductName(evt.target.value)}/>
+                    <button onClick={onBtnAddClick}>Add</button>
                     <ul>
-                        <li>
-                            <span>[Product Name]</span>
-                            <span> <button>X</button> </span>
-                        </li>
                         {productItems}
                     </ul>
                 </div>
