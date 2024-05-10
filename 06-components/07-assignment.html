@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Products</title>
+    <title>[Document Title]</title>
     <script src="babel.min.js"></script>
     <script src="react.development.js"></script>
     <script src="react-dom.development.js"></script>
@@ -12,7 +12,52 @@
         
     </style>
     <script type="text/babel">
-        const Products= () => {
+        function Greeter(props){
+
+            let [userName, setUserName] = React.useState('')
+            let [message, setMessage] = React.useState('[dummy greet message]')
+
+            // UI Behavior
+            const onBtnGreetClick = () => {
+                setMessage(`Hi ${userName}, ${props.msg}`);
+            }
+
+            const onTxtUserNameChange = (evt) => {
+                setUserName(evt.target.value)
+            }
+
+            // Presentation (mandatory)
+            return (
+                <div>
+                    <h1>Greeter</h1>
+                    <hr/>
+                    <label htmlFor="">User Name :</label>
+                    <input type="text" onChange={onTxtUserNameChange}/>
+                    <button onClick={onBtnGreetClick}>Greet</button>
+                    <div>{message}</div>
+                </div>
+            )
+        }
+        const Calculator = () => {
+            const [result,setResult] = React.useState(0);
+            const [n1, setN1] = React.useState(0);
+            const [n2, setN2] = React.useState(0);
+            return (
+                <div>
+                    <h1>Calculator</h1>
+                    <hr/>
+                    <input type="number" onChange={ evt => setN1(parseInt(evt.target.value))} />
+                    <input type="number" onChange={ evt => setN2(parseInt(evt.target.value))} />
+                    <br/>
+                    <button onClick={() => setResult(n1 + n2)}>Add</button>
+                    <button onClick={() => setResult(n1 - n2)}>Subtract</button>
+                    <button onClick={() => setResult(n1 * n2)}>Multiply</button>
+                    <button onClick={() => setResult(n1 / n2)}>Divide</button>
+                    <div className={result >= 0 ? 'positive' : 'negative'}>{result}</div>
+                </div>
+            )
+        }
+         const Products= () => {
 
             const txtNewProductNameRef = React.useRef();
             const [productNames,setProductNames] = React.useState([]);
@@ -60,12 +105,19 @@
             )
         }
         var root = ReactDOM.createRoot(document.getElementById("root"));
-        root.render(<Products/>)
+        // root.render()
     </script>
 </head>
 <body>
     <div id="root">
-        
+        <h1>React App!</h1>
+        <hr>
+        <button>Greeter</button>
+        <button>Calculator</button>
+        <button>Products</button>
+        <span> | </span>
+        <button>Clear</button>
+        <div>Choose your option!</div>
     </div>
 </body>
 </html>
