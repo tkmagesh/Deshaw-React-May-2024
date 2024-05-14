@@ -7,10 +7,61 @@
     <script src="babel.min.js"></script>
     <script src="react.development.js"></script>
     <script src="react-dom.development.js"></script>
+    <script src="redux.js"></script>
     <script type="text/babel">
+
+        let calculatorActionCreators = {
+            add(n1, n2){
+                return {
+                    type : 'ADD',
+                    payload : {n1 : n1, n2 : n2}
+                }
+            },
+            subtract(n1, n2){
+                return {
+                    type : 'SUBTRACT',
+                    payload : {n1 : n1, n2 : n2}
+                }
+            },
+            multiply(n1, n2){
+                return {
+                    type : 'MULTIPLY',
+                    payload : {n1 : n1, n2 : n2}
+                }
+            },
+            divide(n1, n2){
+                return {
+                    type : 'DIVIDE',
+                    payload : {n1 : n1, n2 : n2}
+                }
+            },
+        }
+
+        function calculatorReducer(currentState = 0, action){
+            switch (action.type) {
+                case 'ADD':
+                    return action.payload.n1 + action.payload.n2
+                    break;
+                case 'SUBTRACT':
+                    return action.payload.n1 - action.payload.n2
+                    break;
+                case 'MULTIPLY':
+                    return action.payload.n1 * action.payload.n2
+                    break;
+                case 'DIVIDE':
+                    return action.payload.n1 / action.payload.n2
+                    break;
+                default:
+                    return currentState;
+                    break;
+            }
+        }
+
+        const store = Redux.createStore(calculatorReducer);
+
         // using Redux/StateManager for the below functionality
-        const Calculator = () => {
-            const [result,setResult] = React.useState(0);
+        const Calculator = ({result, add, subtract, multiply, divide}) => {
+            
             const [n1, setN1] = React.useState(0);
             const [n2, setN2] = React.useState(0);
             return (
@@ -20,16 +71,24 @@
                     <input type="number" onChange={ evt => setN1(parseInt(evt.target.value))} />
                     <input type="number" onChange={ evt => setN2(parseInt(evt.target.value))} />
                     <br/>
-                    <button onClick={() => setResult(n1 + n2)}>Add</button>
-                    <button onClick={() => setResult(n1 - n2)}>Subtract</button>
-                    <button onClick={() => setResult(n1 * n2)}>Multiply</button>
-                    <button onClick={() => setResult(n1 / n2)}>Divide</button>
+                    <button onClick={() => add(n1 , n2)}>Add</button>
+                    <button onClick={() => subtract(n1 , n2)}>Subtract</button>
+                    <button onClick={() => multiply(n1 , n2)}>Multiply</button>
+                    <button onClick={() => divide(n1 , n2)}>Divide</button>
                     <div className={result >= 0 ? 'positive' : 'negative'}>{result}</div>
                 </div>
             )
         }
+
+        const calculatorActionDispatchers = Redux.bindActionCreators(calculatorActionCreators, store.dispatch);
+        
         var root = ReactDOM.createRoot(document.getElementById("root"));
-        root.render(<Calculator/>)
+        function renderApp(){
+            const result = store.getState()
+            root.render(<Calculator result={result} {...calculatorActionDispatchers}/>)
+        }
+        renderApp()
+        store.subscribe(renderApp);
     </script>
 </head>
 <body>
