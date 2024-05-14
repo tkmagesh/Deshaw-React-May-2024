@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>State Manager</title>
+    <script src="state-manager.js"></script>
+    <script src="babel.min.js"></script>
+    <script src="react.development.js"></script>
+    <script src="react-dom.development.js"></script>
+    <!--  
+        01. without state manager
+        02. with state manager - initial version
+        03. remove the dependency on the store from the component (by passing the state & dispatch reference to the component as props)
+        04. delegate the responsibility of creating action objects to 'action creator'
+        05. introducing 'action dispatchers'
+    -->
+    <script type="text/babel">
+    
+        function spinnerReducer(currentState = 50, action){
+            
+            // replaced with 'default arguments' feature
+            /* 
+            if (typeof currentState === 'undefined'){
+                // reducer fn is invoked to initialize the store state with a valid default state;
+                return 50;
+            } 
+            */
+            
+            // reducer fn is invoked as a result of an 'action' being 'dispatched'
+            if (action.type === 'DECREMENT'){
+
+                // arrive at the 'new state' for 'DECREMENT' action
+                return currentState - 1;
+            }
+
+            if (action.type === 'INCREMENT'){
+
+                // arrive at the 'new state' for 'INCREMENT' action
+                return currentState + 1;
+            }
+
+            // returning the given currentState as it is coz this reducer does not know how to perform the action
+            return currentState;
+        }
+
+        let store = StateManager.createStore(spinnerReducer);
+
+        let spinnerActionCreators = {
+            decrement(){
+                let dec_action = { type : 'DECREMENT' };
+                return dec_action;
+            },
+            increment(){
+                let inc_action = { type : 'INCREMENT' };
+                return inc_action;
+            }
+        }
+
+        // action dispatcher factory
+        function bindSpinnerActionCreators(spinnerActionCreators, dispatch){
+
+            // action dispatchers -> get the action created from the action creator & dispatch them
+            const spinnerActionDispatchers = {
+
+                decrement(){
+
+                    //get the action object from the action creators
+                    const action = spinnerActionCreators.decrement() 
+
+                    // dispatch the action
+                    dispatch(action)
+                },
+                increment(){
+                    //get the action object from the action creators
+                    const action = spinnerActionCreators.increment()
+
+                    // dispatch the action
+                    dispatch(action)
+                }
+            }
+            return spinnerActionDispatchers;
+        }
+ 
+        const Spinner = ({value, actionDispatchers}) => {
+            
+            const onDecrementClick = () => {
+                actionDispatchers.decrement()
+            }
+
+            const onIncrementClick = () => {
+                actionDispatchers.increment()
+            };
+
+            return (
+                <>
+                    <button onClick={onDecrementClick}>Decrement</button>
+                    <span> [ {value} ] </span>
+                    <button onClick={onIncrementClick}>Increment</button>
+                </>
+            )
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        const spinnerActionDispatchers = bindSpinnerActionCreators(
+            spinnerActionCreators, 
+            store.dispatch
+        );
+
+        function renderApp(){
+            const value = store.getState()
+            root.render(
+                <Spinner 
+                    value={value} 
+                    actionDispatchers={spinnerActionDispatchers}
+                />
+            );
+        }
+        renderApp()
+        store.subscribe(renderApp);
+    </script>
+</head>
+<body>
+    <h1>Spinner - [with State Manager]</h1>
+    <hr>
+    <div id="root">
+       
+    </div>
+</body>
+</html>
