@@ -5,17 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>State Manager</title>
     <script src="state-manager.js"></script>
-    <script>
-        /* 
-        let dec_action = { type : 'DECREMENT' },
-            inc_action = { type : 'INCREMENT' };
+    <script src="babel.min.js"></script>
+    <script src="react.development.js"></script>
+    <script src="react-dom.development.js"></script>
+    <!--  
+        01. without state manager
+        02. with state manager - initial version
 
-        function spinnerReducer(currentState, action){
+    -->
+    <script type="text/babel">
+    
+        function spinnerReducer(currentState = 50, action){
             
+            // replaced with 'default arguments' feature
+            /* 
             if (typeof currentState === 'undefined'){
                 // reducer fn is invoked to initialize the store state with a valid default state;
                 return 50;
-            }
+            } 
+            */
             
             // reducer fn is invoked as a result of an 'action' being 'dispatched'
             if (action.type === 'DECREMENT'){
@@ -35,30 +43,44 @@
         }
 
         let store = StateManager.createStore(spinnerReducer);
+ 
+        const Spinner = ({store}) => {
+            let dec_action = { type : 'DECREMENT' },
+                inc_action = { type : 'INCREMENT' };
+            
+            // get the state from the store & display
+            const value = store.getState();
 
-        console.log(store.getState());
+            const onDecrementClick = () => {
+                store.dispatch(dec_action);
+            }
 
-        store.dispatch(inc_action)
-        console.log(store.getState());
+            const onIncrementClick = () => {
+                store.dispatch(inc_action);
+            };
 
-        // subscribe for state change notifications from the store
-        store.subscribe(() => console.log('current state : ', store.getState()))
+            return (
+                <>
+                    <button onClick={onDecrementClick}>Decrement</button>
+                    <span> [ {value} ] </span>
+                    <button onClick={onIncrementClick}>Increment</button>
+                </>
+            )
+        }
 
-        // dispatch a few actions for verification
-        store.dispatch(inc_action);
-        store.dispatch(inc_action);
-        store.dispatch(dec_action);
-        store.dispatch(dec_action); 
-    */
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        function renderApp(){
+            root.render(<Spinner store={store}/>)
+        }
+        renderApp()
+        store.subscribe(renderApp);
     </script>
 </head>
 <body>
     <h1>Spinner - [with State Manager]</h1>
     <hr>
     <div id="root">
-        <button>Decrement</button>
-        <span> [ 0 ] </span>
-        <button>Increment</button>
+       
     </div>
 </body>
 </html>
