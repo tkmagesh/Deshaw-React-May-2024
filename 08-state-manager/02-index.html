@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>State Manager</title>
+    <script src="state-manager.js"></script>
+    <script>
+        /* 
+        let dec_action = { type : 'DECREMENT' },
+            inc_action = { type : 'INCREMENT' };
+
+        function spinnerReducer(currentState, action){
+            
+            if (typeof currentState === 'undefined'){
+                // reducer fn is invoked to initialize the store state with a valid default state;
+                return 50;
+            }
+            
+            // reducer fn is invoked as a result of an 'action' being 'dispatched'
+            if (action.type === 'DECREMENT'){
+
+                // arrive at the 'new state' for 'DECREMENT' action
+                return currentState - 1;
+            }
+
+            if (action.type === 'INCREMENT'){
+
+                // arrive at the 'new state' for 'INCREMENT' action
+                return currentState + 1;
+            }
+
+            // returning the given currentState as it is coz this reducer does not know how to perform the action
+            return currentState;
+        }
+
+        let store = StateManager.createStore(spinnerReducer);
+
+        console.log(store.getState());
+
+        store.dispatch(inc_action)
+        console.log(store.getState());
+
+        // subscribe for state change notifications from the store
+        store.subscribe(() => console.log('current state : ', store.getState()))
+
+        // dispatch a few actions for verification
+        store.dispatch(inc_action);
+        store.dispatch(inc_action);
+        store.dispatch(dec_action);
+        store.dispatch(dec_action); 
+    */
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

@@ -7,7 +7,12 @@ let StateManager = (() => {
     _callbacks = [],
 
     // to hold the reference of a reducer function
-    _reducerFn = undefined;
+    _reducerFn = undefined,
+
+    // action to initialize the 'currentState' with the 'valid default state'
+    _init_action = {
+        type : '@@INIT/ACTION'
+    };
 
   // getState() method of the 'store'
   function getState() {
@@ -46,6 +51,7 @@ let StateManager = (() => {
     } 
 */
   function dispatch(action) {
+    
     // invoke the reducerFn with the currentState & action
     let newState = _reducerFn(_currentState, action);
 
@@ -73,6 +79,9 @@ let StateManager = (() => {
 
     // keep the reference of the reducer function for future use (to be invoked when an 'action' is 'dispatched')
     _reducerFn = reducer;
+
+    // invoke the reducer function to get the valid default state (default currentState)
+    _currentState = _reducerFn(_currentState /* undefined */, _init_action);
 
     // construct a store object
     const store = {
