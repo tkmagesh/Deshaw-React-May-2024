@@ -68,3 +68,16 @@
 ## Unidirectional Data Flow
 
 ![image](./images/udf.png)
+
+## Components
+### Container / Smart Component
+- Collects the data from the store
+- Creates 'action dispatchers'
+- Passes the data & action dispatchers to the presentation components
+- Ideally, should not handle any user interaction responsibilities
+- fewer container components are preferred
+### Presentation / Dumb Component
+- Receives data from the container component and displays to the user
+- Receives inputs from the user and invokes the given action dispatchers
+- SHOULD NOT communicate with 'store'
+- Can has as many presentation components as needed
