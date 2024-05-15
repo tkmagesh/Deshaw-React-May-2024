@@ -8,7 +8,7 @@ import { connect } from "react-redux";
 import * as bugActionCreators from "./actions";
 import { bindActionCreators } from "redux";
 
-const Bugs = ({ bugs, createNew, toggle, remove, removeClosed }) => {
+const Bugs = ({ bugs, createNew, toggle, remove, removeClosed, load }) => {
   const closedCount = bugs.reduce(
     (prevResult, bug) => (bug.isClosed ? prevResult + 1 : prevResult),
     0
@@ -16,6 +16,7 @@ const Bugs = ({ bugs, createNew, toggle, remove, removeClosed }) => {
   return (
     <>
       <h3>Bugs</h3>
+      <button onClick={load}>Load Bugs!</button>
       <BugStats count={bugs.length} closedCount={closedCount} />
       <BugEdit createNew={createNew} />
       <BugSort />
