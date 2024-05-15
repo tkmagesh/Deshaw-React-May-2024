@@ -142,3 +142,33 @@ npm install react-redux
 
 ## Redux Middleware
 - Cross cutting concerns across actions
+```js
+//Example
+function dispatch(action){
+    console.log('[@store.dispatch] action dispatched :', action)
+}
+
+function logMiddleware(next){
+    return function(action){
+        console.log('[@log] action:', action)
+        next(action)
+    }
+}
+
+function TestMiddleware(next){
+    return function(action){
+        console.log('[@test] action:', action);
+        next(action);
+    }
+}
+
+function applyMiddleware(dispatch, ...middlewares){
+    for(let middleware of middlewares){
+        dispatch = middleware(dispatch);
+    }
+    return dispatch;
+}
+
+dispatch = applyMiddleware(dispatch, logMiddleware, TestMiddleware)
+dispatch('MyAction')
+```

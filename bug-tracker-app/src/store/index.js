@@ -7,10 +7,11 @@ const rootReducer = combineReducers({
     projectsState : projectsReducer
 });
 
-/* 
+
 function logMiddleware(store){
-    return function(next){
-        return function(action){ // invoked everytime an action is dispatched
+    return function logMiddlewareNext(next){
+        console.log("[@logMiddlewareNext] next:", next);
+        return function logMiddlewareAction(action){ // invoked everytime an action is dispatched
             console.group(action.type);
             console.log('Before :', store.getState());
             console.log('Action :', action);
@@ -20,19 +21,23 @@ function logMiddleware(store){
         }
     }
 } 
-*/
 
-const logMiddleware = store => next => action => {
+
+
+/* const logMiddleware = store => next => action => {
     console.group(action.type);
     console.log("Before :", store.getState());
     console.log("Action :", action);
     next(action);
     console.log("After :", store.getState());
     console.groupEnd();
-}
+} */
 
 const rootMiddleware = applyMiddleware(logMiddleware)
 
-const store = createStore(rootReducer, rootMiddleware);
+const store = createStore(rootReducer, rootMiddleware); 
+
+
+// const store = createStore(rootReducer); 
 
 export default store;
