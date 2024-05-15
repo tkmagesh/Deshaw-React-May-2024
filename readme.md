@@ -172,3 +172,58 @@ function applyMiddleware(dispatch, ...middlewares){
 dispatch = applyMiddleware(dispatch, logMiddleware, TestMiddleware)
 dispatch('MyAction')
 ```
+
+## Server Communication
+### Data Server
+```
+make sure you are in the folder that has the data file (db.json)
+npx json-server@0.17.4 db.json -p 3030
+
+```
+
+### Tool for server communication in react app
+```
+npm install axios
+```
+
+### GET
+```js
+// axios usage
+const p1 = axios.get('http://localhost:3030/projects');
+const p2 = p1.then(function(response){
+    return response.data;
+});
+p2.then(function(projects){
+    console.table(projects);
+});
+
+// OR
+axios
+    .get('http://localhost:3030/projects')
+    .then(function(response){
+        return response.data;
+    })
+    .then(function(projects){
+        console.table(projects);
+    });
+
+// OR
+axios
+    .get('http://localhost:3030/projects')
+    .then(response => response.data)
+    .then(projects => console.table(projects))
+
+// OR
+const response = await axios.get('http://localhost:3030/projects')
+const projects = response.data    
+console.table(projects);
+
+```
+
+### POST
+```js
+const newProjectData = { id : 0, name : 'Ticketing System' }
+const response = await axios.post('http://localhost:3030/projects', newProjectData)
+const newProject = response.data
+console.log('new project :', newProject)
+```

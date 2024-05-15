@@ -9,6 +9,9 @@ import store from "./store";
 import Bugs from "./bugs";
 import Projects from './projects';
 
+import axios from 'axios';
+window['axios'] = axios;
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Provider store={store}>

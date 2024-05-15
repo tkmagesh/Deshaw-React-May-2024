@@ -15,6 +15,14 @@
     {
       "id": 2,
       "name": "Time Tracker"
+    },
+    {
+      "id": 7,
+      "name": "Finance Tracker Revamped"
+    },
+    {
+      "id": 8,
+      "name": "Ticketing System"
     }
   ]
 }
