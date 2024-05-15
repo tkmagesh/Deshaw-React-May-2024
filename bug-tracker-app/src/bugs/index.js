@@ -32,7 +32,7 @@ export default connect(
   },
   // mapDispatchToProps (use dispatch to create action dispatchers to be passed as props to the component)
   (dispatch) => {
-    console.log('[@connnect(mapDispatchToProps) dispatch :', dispatch);
+    // console.log('[@connnect(mapDispatchToProps) dispatch :', dispatch);
     return bindActionCreators(bugActionCreators, dispatch);
   }
 )(Bugs);

@@ -10,7 +10,7 @@ const rootReducer = combineReducers({
 
 function logMiddleware(store){
     return function logMiddlewareNext(next){
-        console.log("[@logMiddlewareNext] next:", next);
+        // console.log("[@logMiddlewareNext] next:", next);
         return function logMiddlewareAction(action){ // invoked everytime an action is dispatched
             console.group(action.type);
             console.log('Before :', store.getState());
