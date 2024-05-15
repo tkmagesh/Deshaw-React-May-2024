@@ -81,3 +81,26 @@
 - Receives inputs from the user and invokes the given action dispatchers
 - SHOULD NOT communicate with 'store'
 - Can has as many presentation components as needed
+
+## Build Tasks (Webpack tool)
+- Bundle all js files into 1 file
+- Minify the js file (remove comments & whitespaces)
+- Uglify the js file ( replace all readable variable names with short ones)
+- Versing the js file
+- Bundle the css files into 1 file
+- Minify the css file
+- Version the css file
+- Update the reference of the generated js & css file in the index.html file
+- Minify the index.html file
+
+## Tools for application setup
+- create-react-app
+- vite
+- next.js
+- remix
+
+
+## Creating an application
+```
+npx create-react-app bug-tracker-app
+```

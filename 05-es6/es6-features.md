@@ -193,3 +193,8 @@ class PerishableProduct extends Product {
 - promises
 - async await
 - observables (rxjs - https://rxjs.dev/)
+
+## ES6 Modules
+- Everything defined in a js/jsx/ts file is considered PRIVATE by default
+- The public entities have to be explicitly 'EXPORT'ed
+- To use the public entities from another file, it has to be explictly 'IMPORT'ed
