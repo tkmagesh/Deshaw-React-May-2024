@@ -104,3 +104,25 @@
 ```
 npx create-react-app bug-tracker-app
 ```
+## Folder structure for bug tracker app
+```
+/src
+    /bugs
+        /actions
+            - createNew.js
+            - toggle.js
+            - remove.js
+            - removeClosed.js
+            - index.js
+        /reducers
+            - bugsReducer.js
+        /views
+            - BugStats.jsx
+            - BugEdit.jsx
+            - BugSort.jsx
+            - BugItem.jsx
+            - BugList.jsx
+        - index.js
+    /store
+        - index.js
+```
