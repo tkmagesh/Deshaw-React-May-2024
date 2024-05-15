@@ -139,3 +139,6 @@ npm install react-redux
     - used to retrieve the state from the store
 - useDispatch
     - to get access to the 'dispatch' from the store
+
+## Redux Middleware
+- Cross cutting concerns across actions

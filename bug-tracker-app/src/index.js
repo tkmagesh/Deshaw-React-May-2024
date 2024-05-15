@@ -12,8 +12,14 @@ import Projects from './projects';
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Provider store={store}>
-    <Projects/>
-    <Bugs/>
+    <div className="container">
+      <div className="container-child">
+        <Bugs />
+      </div>
+      <div className="container-child">
+        <Projects />
+      </div>
+    </div>
   </Provider>
 );
 
