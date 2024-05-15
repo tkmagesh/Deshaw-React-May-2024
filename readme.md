@@ -128,3 +128,14 @@ npm install redux
     /store
         - index.js
 ```
+
+## react-redux
+```
+installation:
+npm install react-redux
+```
+- Provider
+- useSelector
+    - used to retrieve the state from the store
+- useDispatch
+    - to get access to the 'dispatch' from the store
