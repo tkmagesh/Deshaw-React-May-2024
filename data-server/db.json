@@ -1,5 +1,18 @@
 {
-  "bugs": [],
+  "bugs": [
+    {
+      "id": 2,
+      "name": "Bug - 2",
+      "isClosed": false,
+      "createdAt": "2024-05-15T11:07:44.359Z"
+    },
+    {
+      "id": 4,
+      "name": "Bug - 4",
+      "isClosed": false,
+      "createdAt": "2024-05-15T11:07:47.855Z"
+    }
+  ],
   "projects": [
     {
       "id": 1,

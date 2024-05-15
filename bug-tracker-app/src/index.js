@@ -8,11 +8,12 @@ import { Provider } from 'react-redux'
 import store from "./store";
 import Bugs from "./bugs";
 import Projects from './projects';
-
+import AppError from './errors'
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Provider store={store}>
+    <AppError/>
     <div className="container">
       <div className="container-child">
         <Bugs />
