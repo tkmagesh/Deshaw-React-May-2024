@@ -27,7 +27,8 @@ const Bugs = ({ bugs, createNew, toggle, remove, removeClosed }) => {
 export default connect(
   // mapStateToProps (extracting state from the store to be passed as props to the component)
   (storeState) => {
-    return { bugs: storeState };
+    console.log('storeState :', storeState)
+    return { bugs: storeState.bugsState };
   },
   // mapDispatchToProps (use dispatch to create action dispatchers to be passed as props to the component)
   (dispatch) => {

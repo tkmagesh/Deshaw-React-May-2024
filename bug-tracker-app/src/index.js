@@ -7,10 +7,12 @@ import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux'
 import store from "./store";
 import Bugs from "./bugs";
+import Projects from './projects';
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Provider store={store}>
+    <Projects/>
     <Bugs/>
   </Provider>
 );
