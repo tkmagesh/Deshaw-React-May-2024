@@ -103,6 +103,8 @@
 ## Creating an application
 ```
 npx create-react-app bug-tracker-app
+cd bug-tracker-app
+npm install redux
 ```
 ## Folder structure for bug tracker app
 ```
